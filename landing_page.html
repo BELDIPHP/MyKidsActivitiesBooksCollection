@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>My Kids Activity Books Collection — 10 Book Mega Bundle</title>
+
+<style>
+:root{
+  --pink-deep:#ff2d9b;
+  --pink-soft:#ffb6e6;
+  --blue-soft:#6fc7ff;
+  --yellow-activity:#FFD44D;
+  --stroke-pink: #C65083;
+}
+
+/* reset */
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial; background:#fbf9fc;color:#222;}
+
+/* ---------- HEADER ---------- */
+.header {
+    position: relative;
+    width: 100%;
+    padding: 0 !important;
+    margin: 0;
+}
+
+.header .header-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    object-position: top; /* يخلي الصورة تبدا من فوق بلا قص */
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/* Brand title image (optional small logo centered over the header image)
+   If you don't want the small logo, comment out the <img class="brand-logo"> tag in the HTML below. */
+.brand-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 22px;
+  width: 120px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+  background: rgba(255,255,255,0.04);
+  padding:6px;
+}
+
+/* Yellow subtitle below the header image (one clear line) */
+.yellow-subtitle {
+  margin: 10px auto 18px;
+  max-width: 1100px;
+  padding: 0 18px;
+  font-size: 18px;
+  font-weight: 800;
+  /* اللون الجديد الأزرق السماوي الغامق */
+  color: #1b6fd8;
+  /* shadow مناسب وناعم */
+  text-shadow: 1px 1px 3px rgba(27, 111, 216, 0.35);
+  line-height: 1.35;
+  text-align: center;
+}
+
+
+/* ---------- SPEECH BUBBLES (animated) ---------- */
+.speech {
+  position: absolute;
+  background: rgba(255,255,255,0.98);
+  color: #1f2937;
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-weight:800;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.14);
+  max-width: 260px;
+  font-size:14px;
+  line-height:1.25;
+  z-index: 60;
+  transform-origin: center;
+  /* subtle entrance */
+  opacity: 0.98;
+}
+
+/* bubble pointer (small triangle) */
+.speech::after{
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: rgba(255,255,255,0.98);
+  transform: rotate(45deg);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.04);
+}
+
+/* left bubble placement */
+.speech-left{
+  left: 6%;
+  top: 18%;
+  animation: floatLeft 4.6s ease-in-out infinite;
+}
+.speech-left::after{ left: 12px; bottom: -6px; }
+
+/* right bubble placement */
+.speech-right{
+  right: 6%;
+  top: 18%;
+  animation: floatRight 4.2s ease-in-out infinite;
+}
+.speech-right::after{ right: 12px; bottom: -6px; }
+
+/* Floating animations - smooth up/down + tiny rotate for life */
+@keyframes floatLeft {
+  0%   { transform: translateY(0) rotate(0deg); }
+  50%  { transform: translateY(-10px) rotate(-0.6deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+@keyframes floatRight {
+  0%   { transform: translateY(0) rotate(0deg); }
+  50%  { transform: translateY(-10px) rotate(0.6deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* Make bubbles slightly smaller on narrow screens and reposition them */
+@media (max-width:900px){
+  .speech-left { left: 4%; top: 10%; max-width: 190px; font-size:13px; }
+  .speech-right{ right: 4%; top: 10%; max-width: 190px; font-size:13px; }
+  .brand-logo{ top: 12px; width: 96px; }
+  .header .header-image { max-height: 420px; }
+}
+@media (max-width:520px){
+  .speech-left, .speech-right { display:none; } /* hide bubbles on very small screens to keep layout clean */
+  .brand-logo{ display:none; }
+  .header .header-image { max-height: 380px; }
+}
+
+/* ---------- MAIN / GRID / CARDS (kept from your base, cleaned) ---------- */
+.container{ max-width:1150px; margin:34px auto; padding:0 18px; }
+.section-title{ text-align:center; font-size:22px; font-weight:800; color:#333; margin-bottom:18px; }
+
+.grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:22px; }
+
+.card{
+  background:#fff;
+  border-radius:14px;
+  padding:16px;
+  text-align:center;
+  box-shadow:0 10px 28px rgba(12,12,12,0.06);
+  border:2px solid #ffd6f0;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.card:hover{ transform:translateY(-8px); box-shadow:0 18px 44px rgba(12,12,12,0.12); }
+.cover{ width:100%; height:270px; object-fit:cover; border-radius:10px; background:#f3f3f6; margin-bottom:12px; }
+.card h3{ margin:8px 0; font-size:18px; color:#222; font-weight:800; }
+.card p{ margin:0; color:#666; font-size:14px; min-height:42px; }
+
+/* buttons */
+.actions{ margin-top:12px; display:flex; gap:8px; justify-content:center; align-items:center; }
+.btn{
+  padding:10px 16px;
+  border-radius:10px;
+  text-decoration:none;
+  color:#fff;
+  font-weight:800;
+  font-size:14px;
+  display:inline-block;
+}
+.btn-buy{ background:linear-gradient(90deg,var(--pink-deep),#6fc7ff); box-shadow:0 10px 26px rgba(111,199,255,0.12); }
+
+/* CTA */
+.cta{ text-align:center; margin:32px 0 60px; }
+.cta .big{ display:inline-block; padding:16px 28px; font-size:20px; border-radius:999px; text-decoration:none;
+  background:linear-gradient(90deg,var(--pink-deep),var(--blue-soft)); color:#fff; font-weight:900;
+  box-shadow:0 18px 48px rgba(111,199,255,0.12); }
+
+/* footer */
+.footer{ padding:28px 18px; background:linear-gradient(135deg,var(--pink-soft),var(--blue-soft)); color:#1111be; text-align:center; font-weight:700; margin-top:40px; }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER HERO -->
+<header class="header">
+
+  <!-- single header image (you asked to use only one image here) -->
+  <img class="header-image" src="https://i.imgur.com/PQ0LVUF.png" alt="Header banner">
+
+  <!-- optional small brand-logo if needed (comment out if you don't want it) -->
+  <!-- <img class="brand-logo" src="https://i.imgur.com/Nrc7N15.png" alt="Brand logo"> -->
+
+  <!-- animated speech bubbles (positions chosen to match characters in the header image) -->
+  <div class="speech speech-left">Smart learning starts here!</div>
+  <div class="speech speech-right">Fun learning for every child!</div>
+
+  <!-- yellow subtitle text (CSS-styled, not embedded into the image) -->
+  <p class="yellow-subtitle">
+    A 10-book mega bundle of creative, printable activity books (ages 3–9). Perfect for parents, teachers & homeschooling. Instant download — ready to print.
+  </p>
+</header>
+
+<!-- MAIN -->
+<main class="container">
+  <h2 class="section-title">Included Activity Books — 10 titles</h2>
+
+  <div class="grid">
+
+    <!-- Book 1 -->
+    <article class="card">
+      <img class="cover" src="https://public-files.gumroad.com/lrr79371yu4xd3ja0rf4yq991aun" alt="Book 1 cover">
+      <h3>ELARA'S COSMIC ACTIVITY BOOK</h3>
+      <p>Fun worksheets, coloring & early learning activities — ready to print.</p>
+      <div class="actions">
+        <a class="btn btn-buy" href="https://beldiwalid.gumroad.com/l/bqzlu" target="_blank" rel="noopener">Buy This Book (2.75 €)</a>
+      </div>
+    </article>
+
+    <!-- Book 2 -->
+    <article class="card">
+      <img class="cover" src="https://public-files.gumroad.com/q0s5eqrk6rsk05610p3ld7bsmmhc" alt="Book 2 cover">
+      <h3>SOLVE THE MAZE FOR KIDS</h3>
+      <p>Preschool-friendly activities to build skills and confidence.</p>
+      <div class="actions">
+        <a class="btn btn-buy" href="https://beldiwalid.gumroad.com/l/lgqho" target="_blank" rel="noopener">Buy This Book (3.25 €)</a>
+      </div>
+    </article>
+
+    <!-- Book 3 -->
+    <article class="card">
+      <img class="cover" src="https://public-files.gumroad.com/8ow3jkkadclc1e47ex2a8dwewtrg" alt="Book 3 cover">
+      <h3>CUT THE LINE AND COLOR</h3>
+      <p>Creative challenges to fine motor skills & boost problem solving.</p>
+      <div class="actions">
+        <a class="btn btn-buy" href="https://beldiwalid.gumroad.com/l/gcjcvy" target="_blank" rel="noopener">Buy This Book (4.25 €)</a>
+      </div>
+    </article>
+
+    <!-- Book 4 -->
+    <article class="card">
+      <img class="cover" src="https://public-files.gumroad.com/uqyf7n5e6s7q0qrts5jjjyyf03ne" alt="Book 4 cover">
+      <h3>WILD ANIMAL COLORING BOOK</h3>
+      <p>Teacher-friendly printable resources — ready for classroom use.</p>
+      <div class="actions">
+        <a class="btn btn-buy" href="https://beldiwalid.gumroad.com/l/diabps" target="_blank" rel="noopener">Buy This Book (5.75 €)</a>
+      </div>
+    </article>
+
+    <!-- Book 5 -->
+    <article class="card">
+      <img class="cover" src="https://public-files.gumroad.com/gjzvt68arokx4ud9gnp7x1l7z1zo" alt="Book 5 cover">
+      <h3>STORY BOOK:"Luna’s Weather Watch"</h3>
+      <p>A charming story about observation, curiosity, and following your dreams.</p>
+      <div class="actions">
+        <a class="btn btn-buy" href="https://beldiwalid.gumroad.com/l/jfydrl" target="_blank" rel="noopener">Buy This Book (2.50 €)</a>
+      </div>
+    </article>
+
+    <!-- Book 6 -->
+    <article class="card">
+      <img class="cover" src="https://public-files.gumroad.com/fsf4m40gpv2d5bdiqpl5t7l0qr8y" alt="Book 6 cover">
+      <h3>STORY BOOKY:"Sarra's Magical Shoes"</h3>
+      <p>A beautifull illustrated story about adventure, fantasy, and seaside wonders.</p>
+      <div class="actions">
+        <a class="btn btn-buy" href="https://beldiwalid.gumroad.com/l/zfxjlx" target="_blank" rel="noopener">Buy This Book (2.50 €)</a>
+      </div>
+    </article>
+
+    <!-- Book 7 -->
+    <article class="card">
+      <img class="cover" src="https://public-files.gumroad.com/kk5fqde6ar3g6uavn6jtxybqi59b" alt="Book 7 cover">
+      <h3>STORY BOOK:"The Shape Train Adventure"</h3>
+      <p>This story Shape recognition, problem solving and counting skills to spark curiosity.</p>
+      <div class="actions">
+        <a class="btn btn-buy" href="https://beldiwalid.gumroad.com/l/fcylix" target="_blank" rel="noopener">Buy This Book (2.50 €)</a>
+      </div>
+    </article>
+
+    <!-- Book 8 -->
+    <article class="card">
+      <img class="cover" src="https://public-files.gumroad.com/mvday4bj5caw0yo596ojy3rvwmae" alt="Book 8 cover">
+      <h3>STORY BOOK:"The Tiny Dragon in My Backpack"</h3>
+      <p>this book offers gentle emotions, magical moments, and beautiful life lessons wrapped in a fun adventure..</p>
+      <div class="actions">
+        <a class="btn btn-buy" href="https://beldiwalid.gumroad.com/l/dwyzen" target="_blank" rel="noopener">Buy This Book (2.50 €)</a>
+      </div>
+    </article>
+
+    <!-- Book 9 -->
+    <article class="card">
+      <img class="cover" src="https://public-files.gumroad.com/9k7k2l5dv77eon3lthi36fzspwka" alt="Book 9 cover">
+      <h3>STORY BOOK:"Tommy and the Talking Toothbrush"</h3>
+      <p> This story teaches kids about dental hygiene, responsibility, and healthy habits in a creative way.</p>
+      <div class="actions">
+        <a class="btn btn-buy" href="https://beldiwalid.gumroad.com/l/healthy_habits" target="_blank" rel="noopener">Buy This Book (2.35 €)</a>
+      </div>
+    </article>
+
+    <!-- Book 10 -->
+    <article class="card">
+      <img class="cover" src="https://public-files.gumroad.com/2h0uq4ktr0qd0433dw4ptryw181t" alt="Book 10 cover">
+      <h3>STORY BOOK:"The Penguin Who Learns to Share"</h3>
+      <p>This story teaches children the beauty of generosity, empathy, and friendship.</p>
+      <div class="actions">
+        <a class="btn btn-buy" href="https://beldiwalid.gumroad.com/l/Kids_Stories" target="_blank" rel="noopener">Buy This Book (2.35 €)</a>
+      </div>
+    </article>
+
+  </div> <!-- /grid -->
+
+  <!-- CTA -->
+  <div class="cta">
+    <a class="big" href="https://bit.ly/Kids_Book_By_Walid" target="_blank" rel="noopener">Get All Ten Books — Bundle (15.35 €)</a>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  © 2025 — My Kids Activity Books Collection
+</footer>
+
+</body>
+</html>
