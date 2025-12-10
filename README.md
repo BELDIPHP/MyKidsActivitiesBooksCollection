@@ -13,8 +13,6 @@ Every book is designed to support early development in a joyful, child-friendly 
 👉 Explore the full collection on our page and start your child’s next learning adventure today.
 https://bit.ly/Kids_Book_By_Walid
 --------------------------------------------------------------------------------
-FACEBOOK: 
-https://www.facebook.com/My.Kids.Activity.Book.Collection
 INSTAGRAM:  
 @my.kids.book.collection/
 TIKTOK: 
