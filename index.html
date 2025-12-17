@@ -601,6 +601,123 @@ body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, A
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 8px 20px rgba(111, 199, 255, 0.3);
 }
+/* FAQ Modal */
+.faq-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.85);
+  animation: fadeIn 0.3s ease;
+}
+.faq-modal-content {
+  position: relative;
+  background-color: #fff;
+  margin: 2% auto;
+  padding: 0;
+  width: 90%;
+  max-width: 900px;
+  border-radius: 20px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+  animation: slideDown 0.4s ease;
+  overflow: hidden;
+  max-height: 90vh;
+}
+.faq-modal-header {
+  background: linear-gradient(135deg, var(--pink-deep), var(--blue-soft));
+  color: white;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.faq-modal-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+}
+.faq-close {
+  color: white;
+  font-size: 38px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform .2s ease;
+  line-height: 1;
+}
+.faq-close:hover {
+  transform: scale(1.2) rotate(90deg);
+}
+.faq-modal-body {
+  padding: 30px 40px;
+  max-height: 75vh;
+  overflow-y: auto;
+}
+.faq-modal-body summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  color: #222;
+  list-style: none;
+  user-select: none;
+  text-align: left;  /* Ajoutez cette ligne */
+}
+
+.faq-modal-body details p {
+  margin-top: 12px;
+  line-height: 1.7;
+  color: #555;
+  font-size: 15px;
+  text-align: left;  /* Ajoutez cette ligne */
+}
+.faq-item {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.faq-item:last-child {
+  border-bottom: none;
+}
+.faq-question {
+  font-size: 18px;
+  font-weight: 800;
+  color: #222;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.faq-answer {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.7;
+  margin: 0;
+}
+.faq-answer ul {
+  margin: 10px 0;
+  padding-left: 25px;
+}
+.faq-answer li {
+  margin-bottom: 5px;
+}
+.faq-cta {
+  background: linear-gradient(135deg, rgba(255,45,155,0.1), rgba(111,199,255,0.1));
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 30px;
+  text-align: center;
+}
+.faq-cta strong {
+  display: block;
+  font-size: 18px;
+  color: #222;
+  margin-bottom: 10px;
+}
+.faq-cta p {
+  color: #555;
+  font-size: 15px;
+  margin: 0;
+}
 @media (max-width: 768px) {
   .contact-form {
     grid-template-columns: 1fr;
@@ -970,7 +1087,7 @@ body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, A
 </div>
 
 <!-- RIGHT CONTACT BLOCK -->
-<div style="position:absolute; right:20px; top:45px; color:#1111be; font-size:17px; text-align:left; overflow:visible; z-index:20; font-weight: 500">
+<div style="position:absolute; right:20px; top:20px; color:#1111be; font-size:17px; text-align:left; overflow:visible; z-index:20; font-weight: 500">
   <!-- EMAIL -->
 <div style="display:flex;align-items:center;margin-bottom:10px;">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="#1111be" style="margin-right:6px;">
@@ -988,7 +1105,7 @@ body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, A
     <span>+216 22 290 085</span>
   </div>
   <!-- LOCATION -->
-  <div style="display:flex;align-items:center;">
+  <div style="display:flex;align-items:center;margin-bottom:10px;">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="#1111be" style="margin-right:6px;">
       <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
     </svg>
@@ -996,7 +1113,17 @@ body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, A
       Borj Bou Khlifa Sidi Achour, Nabeul 8000, Tunisie.
     </a>
   </div>
+    <!-- FAQ -->
+  <div style="display:flex;align-items:center;">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="#1111be" style="margin-right:6px;">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+    </svg>
+    <a href="javascript:void(0)" onclick="openFAQModal()" style="color:#1111be; text-decoration: none; cursor: pointer;">
+      Frequently Asked Questions
+    </a>
+  </div>
 </div>
+
 <!-- Brand Image Modal -->
 <div id="brandImageModal" class="location-modal">
   <div class="location-modal-content">
@@ -1050,9 +1177,81 @@ body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, A
     </div>
   </div>
 </div>
+<!-- FAQ Modal -->
+<div id="faqModal" class="faq-modal">
+  <div class="faq-modal-content">
+    <div class="faq-modal-header">
+      <h2>Frequently Asked Questions</h2>
+      <span class="faq-close" onclick="closeFAQModal()">&times;</span>
+    </div>
+    <div class="faq-modal-body">
+
+      <details>
+        <summary>🎯 What age group are these activity books for?</summary>
+        <p>Our printable activity books are designed for <strong>children ages 3 to 9</strong>, covering preschool to early elementary learning.</p>
+      </details>
+
+      <details>
+        <summary>🖨️ Are these books printable?</summary>
+        <p>Yes. All books are delivered as <strong>high-quality printable PDFs</strong>. You can print them at home, at school, or at a print shop.</p>
+      </details>
+
+      <details>
+        <summary>👩‍🏫 Can teachers use these resources in the classroom?</summary>
+        <p>Absolutely. These resources are perfect for <strong>teachers, homeschoolers, and educators</strong> for classroom activities, learning centers, and homework.</p>
+      </details>
+
+      <details>
+        <summary>🧠 What skills do children learn?</summary>
+        <p>Children develop <strong>fine motor skills, early math, shape recognition, focus, creativity</strong>, and independent learning habits.</p>
+      </details>
+
+      <details>
+        <summary>💻 Do I need special software?</summary>
+        <p>No special software is required. The files open with any standard <strong>PDF reader</strong> on computers, tablets, or smartphones.</p>
+      </details>
+
+      <details>
+        <summary>⚡ How do I receive my files?</summary>
+        <p>You receive an <strong>instant download link</strong> right after purchase so you can start using the activities immediately.</p>
+      </details>
+
+      <details>
+        <summary>👨‍👩‍👧 Can I use the books for more than one child?</summary>
+        <p>Yes. You may use the books with <strong>your own children or classroom students</strong>. File sharing or resale is not permitted.</p>
+      </details>
+
+      <details>
+        <summary>🏡 Are these suitable for homeschooling?</summary>
+        <p>Yes. These printable activity books are ideal for <strong>homeschooling, quiet time, and extra practice at home</strong>.</p>
+      </details>
+
+      <details>
+        <summary>🔄 What if I have a problem with my download?</summary>
+        <p>If you experience any issue accessing your files, simply contact us and we'll help you resolve it quickly.</p>
+      </details>
+
+      <details>
+        <summary>📚 Are the activities educational and age-appropriate?</summary>
+        <p>Yes. All activities are designed to support <strong>early childhood learning goals</strong>, helping children learn through play in a fun and structured way.</p>
+      </details>
+
+      <details>
+        <summary>📦 Is this a physical product?</summary>
+        <p>No. This is a <strong>digital PDF download</strong>. No physical items will be shipped.</p>
+      </details>
+
+      <div class="faq-cta">
+        <strong>Ready to make learning fun?</strong>
+        <p>👉 Download your printable activity books today and start learning through play!</p>
+      </div>
+
+    </div>
+  </div>
+</div>
 </footer>
 <script>
-  // ========== FIREBASE CONFIGURATION ==========
+  
   // ========== FIREBASE CONFIGURATION ==========
 const firebaseConfig = {
   apiKey: "AIzaSyAiMcksg_1rsw-sjZb9TL1APbMZdM6vR1Q",
@@ -1348,10 +1547,17 @@ footer.insertBefore(starsContainer, buyLink);
 
 buyLink.textContent = `Buy This Book - ${book.price}`;
 // Affiche la moyenne des notes sous les étoiles
-const ratingDisplay = document.createElement('div');
-ratingDisplay.style.marginTop = '10px';
-ratingDisplay.style.fontSize = '14px';
-ratingDisplay.style.color = '#666';
+// Vérifier si le ratingDisplay existe déjà pour éviter la duplication
+let ratingDisplay = footer.querySelector('.rating-display');
+if (!ratingDisplay) {
+  ratingDisplay = document.createElement('div');
+  ratingDisplay.className = 'rating-display';
+  ratingDisplay.style.marginTop = '10px';
+  ratingDisplay.style.fontSize = '14px';
+  ratingDisplay.style.color = '#666';
+  footer.insertBefore(ratingDisplay, buyLink);
+}
+
 ratingDisplay.innerHTML = 'Loading ratings...';
 
 getAverageRating(bookId, (average, count) => {
@@ -1361,8 +1567,6 @@ getAverageRating(bookId, (average, count) => {
     ratingDisplay.innerHTML = 'No ratings yet. Be the first!';
   }
 });
-
-footer.insertBefore(ratingDisplay, buyLink);
 
   document.getElementById('bookModal').style.display = 'block';
   document.body.style.overflow = 'hidden';
@@ -1419,11 +1623,12 @@ document.addEventListener('keydown', function(e) {
 window.onclick = function(event) {
   if (event.target.id === 'bookModal') closeModal();
   if (event.target.id === 'locationModal') closeLocationModal();
-}
+  if (event.target.id === 'faqModal') closeFAQModal();}
 document.addEventListener('keydown', function(event) {
   if (event.key === 'Escape') {
     closeModal();
     closeLocationModal();
+    closeFAQModal();
   }
 });
 // Touch/Mouse drag functionality for book carousel (unchanged)
@@ -1503,6 +1708,17 @@ document.addEventListener('keydown', function(e) {
     closeContactModal();
   }
 });
+
+// FAQ Modal Functions
+function openFAQModal() {
+  document.getElementById('faqModal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeFAQModal() {
+  document.getElementById('faqModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
 document.addEventListener('DOMContentLoaded', function() {
   const contactForm = document.getElementById('contactForm');
   
@@ -1565,5 +1781,46 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What age group are these activity books for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "These printable activity books are designed for children ages 3 to 9, from preschool to early elementary levels."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are these books printable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, all books are provided as printable PDF files that can be printed at home or school."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can teachers use these resources in the classroom?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, teachers and educators can use these printable activity books for classroom and learning center activities."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this a physical product?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, this is a digital PDF download. No physical product will be shipped."
+      }
+    }
+  ]
+}
+</script>
+
 </body>
 </html>
