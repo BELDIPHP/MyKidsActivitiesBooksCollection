@@ -2,8 +2,39 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RV2XWNNBRN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RV2XWNNBRN');
+</script>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>My Kids Activity Books Collection – 10 Book Mega Bundle</title>
+
+<!-- Firebase Scripts -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+<!-- AJOUTEZ CES BALISES META -->
+<meta name="description" content="10 printable activity books for kids ages 3-9. Worksheets, coloring, mazes, stories. Perfect for parents, teachers & homeschooling. Instant download."/>
+<meta name="keywords" content="kids activity books, printable worksheets, coloring books, children education, homeschooling, preschool activities"/>
+<meta name="author" content="My Kids Activity Books Collection"/>
+
+<!-- Open Graph pour réseaux sociaux -->
+<meta property="og:title" content="My Kids Activity Books Collection – 10 Book Mega Bundle"/>
+<meta property="og:description" content="Creative printable activity books for kids ages 3-9. Instant download, ready to print."/>
+<meta property="og:image" content="https://i.imgur.com/PQ0LVUF.png"/>
+<meta property="og:url" content="https://beldiphp.github.io/MyKidsActivitiesBooksCollection/"/>
+<meta property="og:type" content="website"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="My Kids Activity Books Collection"/>
+<meta name="twitter:description" content="10 printable activity books for kids ages 3-9"/>
+<meta name="twitter:image" content="https://i.imgur.com/PQ0LVUF.png"/>
 <style>
 :root{
   --pink-deep:#ff2d9b;
@@ -1021,6 +1052,52 @@ body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, A
 </div>
 </footer>
 <script>
+  // ========== FIREBASE CONFIGURATION ==========
+const firebaseConfig = {
+  apiKey: "VOTRE_API_KEY_ICI",
+  authDomain: "VOTRE_PROJECT.firebaseapp.com",
+  databaseURL: "https://VOTRE_PROJECT-default-rtdb.firebaseio.com",
+  projectId: "VOTRE_PROJECT",
+  storageBucket: "VOTRE_PROJECT.appspot.com",
+  messagingSenderId: "VOTRE_MESSAGING_ID",
+  appId: "VOTRE_APP_ID"
+};
+
+// Initialiser Firebase
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+// Fonction pour sauvegarder les évaluations
+function saveRating(bookId, rating) {
+  const ratingsRef = database.ref('ratings/' + bookId);
+  ratingsRef.push({
+    rating: rating,
+    timestamp: Date.now()
+  }).then(() => {
+    console.log('Rating saved successfully!');
+    alert(`Thank you for your ${rating}-star rating! ⭐`);
+  }).catch((error) => {
+    console.error('Error saving rating:', error);
+    alert('Error saving rating. Please try again.');
+  });
+}
+
+// Fonction pour récupérer la moyenne des évaluations
+function getAverageRating(bookId, callback) {
+  const ratingsRef = database.ref('ratings/' + bookId);
+  ratingsRef.once('value', (snapshot) => {
+    const ratings = snapshot.val();
+    if (ratings) {
+      const ratingsArray = Object.values(ratings).map(r => r.rating);
+      const average = ratingsArray.reduce((a, b) => a + b, 0) / ratingsArray.length;
+      const count = ratingsArray.length;
+      callback(average.toFixed(1), count);
+    } else {
+      callback(0, 0);
+    }
+  });
+}
+// ========== FIN FIREBASE CONFIGURATION ==========
 const booksData = {
   book1: {
     title: "ELARA'S COSMIC ACTIVITY BOOK",
@@ -1233,6 +1310,11 @@ for (let i = 0; i < 5; i++) {
       // Si on clique sur la prochaine étoile attendue
       this.style.color = '#ff2d9b';
       activatedCount++;
+      // Si toutes les étoiles sont activées, sauvegarde la note
+      if (activatedCount > 0) {
+        const rating = activatedCount;
+        saveRating(bookId, rating); // Sauvegarde dans Firebase
+      }
     } else if (clickedIndex < activatedCount) {
       // Si on clique sur une étoile déjà activée, on la désactive
       // et on désactive toutes les suivantes
@@ -1291,6 +1373,22 @@ function closeModal() {
   document.getElementById('bookModal').style.display = 'none';
   document.body.style.overflow = 'auto';
 }
+// Affiche la moyenne des notes sous les étoiles
+const ratingDisplay = document.createElement('div');
+ratingDisplay.style.marginTop = '10px';
+ratingDisplay.style.fontSize = '14px';
+ratingDisplay.style.color = '#666';
+ratingDisplay.innerHTML = 'Loading ratings...';
+
+getAverageRating(bookId, (average, count) => {
+  if (count > 0) {
+    ratingDisplay.innerHTML = `Average: ${average}/5 ⭐ (${count} ratings)`;
+  } else {
+    ratingDisplay.innerHTML = 'No ratings yet. Be the first!';
+  }
+});
+
+footer.insertBefore(ratingDisplay, buyLink);
 // Location Modal Functions (✅ واحدة فقط، بدون تكرار)
 function openLocationModal() {
   document.getElementById('locationModal').style.display = 'block';
