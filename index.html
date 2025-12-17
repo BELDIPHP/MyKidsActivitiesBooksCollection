@@ -1347,6 +1347,26 @@ const footer = document.querySelector('.modal-footer');
 footer.insertBefore(starsContainer, buyLink);
 
 buyLink.textContent = `Buy This Book - ${book.price}`;
+  // Affiche la moyenne des notes sous les étoiles
+const ratingDisplay = document.createElement('div');
+ratingDisplay.style.marginTop = '10px';
+ratingDisplay.style.fontSize = '14px';
+ratingDisplay.style.color = '#666';
+ratingDisplay.innerHTML = 'Loading ratings...';
+
+getAverageRating(bookId, (average, count) => {
+  if (count > 0) {
+    ratingDisplay.innerHTML = `Average: ${average}/5 ⭐ (${count} ratings)`;
+  } else {
+    ratingDisplay.innerHTML = 'No ratings yet. Be the first!';
+  }
+});
+
+footer.insertBefore(ratingDisplay, buyLink);
+
+  document.getElementById('bookModal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
   document.getElementById('bookModal').style.display = 'block';
   document.body.style.overflow = 'hidden';
 }
@@ -1374,22 +1394,7 @@ function closeModal() {
   document.getElementById('bookModal').style.display = 'none';
   document.body.style.overflow = 'auto';
 }
-// Affiche la moyenne des notes sous les étoiles
-const ratingDisplay = document.createElement('div');
-ratingDisplay.style.marginTop = '10px';
-ratingDisplay.style.fontSize = '14px';
-ratingDisplay.style.color = '#666';
-ratingDisplay.innerHTML = 'Loading ratings...';
 
-getAverageRating(bookId, (average, count) => {
-  if (count > 0) {
-    ratingDisplay.innerHTML = `Average: ${average}/5 ⭐ (${count} ratings)`;
-  } else {
-    ratingDisplay.innerHTML = 'No ratings yet. Be the first!';
-  }
-});
-
-footer.insertBefore(ratingDisplay, buyLink);
 // Location Modal Functions (✅ واحدة فقط، بدون تكرار)
 function openLocationModal() {
   document.getElementById('locationModal').style.display = 'block';
