@@ -1823,6 +1823,79 @@ document.addEventListener('DOMContentLoaded', function() {
   ]
 }
 </script>
+<!-- Exit Intent Popup -->
+<div id="exitPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center;">
+  <div style="background:#fff; border-radius:20px; padding:40px; max-width:500px; text-align:center; position:relative; animation:slideIn 0.3s ease;">
+    <button onclick="closeExitPopup()" style="position:absolute; top:15px; right:20px; background:none; border:none; font-size:30px; cursor:pointer; color:#999;">&times;</button>
+    
+    <h2 style="color:#ff2d9b; font-size:28px; margin:0 0 15px;">⚠️ WAIT! Don't Leave Empty-Handed!</h2>
+    
+    <p style="font-size:18px; color:#333; margin:20px 0;">You're SO close to solving your kids' boredom problem!</p>
+    
+    <div style="background:linear-gradient(135deg, #ff2d9b, #6fc7ff); padding:25px; border-radius:15px; margin:25px 0;">
+      <p style="color:#fff; font-size:22px; font-weight:800; margin:0;">🎁 SPECIAL OFFER JUST FOR YOU!</p>
+      <p style="color:#fff; font-size:32px; font-weight:900; margin:10px 0;">50% OFF</p>
+      <p style="color:#fff; font-size:16px; margin:0;">10 Books + 3 FREE - Only £15.35</p>
+    </div>
+    
+    <a href="https://bit.ly/Kids_Book_By_Walid" style="display:inline-block; background:#ff2d9b; color:#fff; padding:18px 40px; border-radius:50px; text-decoration:none; font-size:20px; font-weight:800; margin-top:15px; box-shadow:0 8px 20px rgba(255,45,155,0.3);">
+      🎯 YES! GET MY 50% OFF NOW
+    </a>
+    
+    <p style="font-size:13px; color:#999; margin-top:20px;">✓ Instant Download • ✓ No Shipping • ✓ Use Tonight</p>
+  </div>
+</div>
 
+<style>
+@keyframes slideIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+</style>
+
+<script>
+let exitIntentShown = false;
+
+document.addEventListener('mouseleave', function(e) {
+  if (e.clientY < 0 && !exitIntentShown) {
+    showExitPopup();
+  }
+});
+
+// للموبايل - عند scroll للأعلى بسرعة
+let lastScrollTop = 0;
+window.addEventListener('scroll', function() {
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  if (scrollTop < lastScrollTop && scrollTop < 50 && !exitIntentShown) {
+    showExitPopup();
+  }
+  lastScrollTop = scrollTop;
+}, false);
+
+function showExitPopup() {
+  document.getElementById('exitPopup').style.display = 'flex';
+  exitIntentShown = true;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeExitPopup() {
+  document.getElementById('exitPopup').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+// Close بالضغط خارج الـ popup
+document.getElementById('exitPopup').addEventListener('click', function(e) {
+  if (e.target.id === 'exitPopup') {
+    closeExitPopup();
+  }
+});
+
+// Close بالـ Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeExitPopup();
+  }
+});
+</script>
 </body>
 </html>
